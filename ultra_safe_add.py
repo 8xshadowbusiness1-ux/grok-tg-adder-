@@ -18,10 +18,10 @@ from telethon.errors import (
 from telethon.tl.functions.channels import InviteToChannelRequest
 from flask import Flask
 # CONFIG
-API_ID = 22676464
-API_HASH = "b52406ee2c61546d8b560e2d009052d3"
-PHONE = "+917671914528"
-BOT_TOKEN = "8254353086:AAEMim12HX44q0XYaFWpbB3J7cxm4VWprEc"
+API_ID = 39551300
+API_HASH = "8b5d631229db67b968a9b1500ed6e66b"
+PHONE = "+917984936358"
+BOT_TOKEN = "8466892151:AAGYohZaOn0WrJCh-Ou-Wr6i92pD6kMFMS0"
 USER_CHAT_ID = 1602198875
 TARGET_GROUP = -1001823169797
 IDS_FILE = "only_ids.txt" # Put usernames (with @) or numeric IDs here, one per line

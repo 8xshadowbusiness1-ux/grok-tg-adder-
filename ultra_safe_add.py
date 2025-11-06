@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """
-ULTRA SAFE ADD BOT v4.0 — ZERO FLOOD RISK MODE
+ULTRA SAFE ADD BOT v4.1 — REVERSE ADD MODE (Last to First)
 - Increased default delays to 300-900s (5-15 min) based on Telegram limits
 - Exponential backoff on flood: multiplier increases delays temporarily
 - Extra delay after get_entity to separate resolves from invites
+- REVERSE: Adds from last user to first (entries[::-1])
 - Supports @usernames or numeric IDs from only_ids.txt
 """
 import os, time, json, asyncio, random, threading, requests, traceback
@@ -113,7 +114,7 @@ def tele_sign_in_with_password(pwd):
         return True, "2FA success!"
     except Exception as e:
         return False, str(e)
-# Ultra-safe ADD with zero flood risk
+# Ultra-safe ADD with zero flood risk (REVERSE ORDER)
 async def add_members():
     session = SQLiteSession("safe_add_session")
     c = TelegramClient(session, API_ID, API_HASH)
@@ -127,7 +128,7 @@ async def add_members():
         await c.disconnect()
         return
     with open(IDS_FILE) as f:
-        entries = [line.strip() for line in f if line.strip()]
+        entries = [line.strip() for line in f if line.strip()][::-1]  # REVERSE: Last to first
     s = load_state()
     total = len(entries)
     start = s.get("last_index", 0)
@@ -254,7 +255,7 @@ def process_cmd(text):
         if not s.get("logged_in"):
             bot_send("Login first!"); return
         run_in_thread(add_members)
-        bot_send("Starting ZERO flood risk add (from only_ids.txt). Expect slow but safe progress.")
+        bot_send("Starting ZERO flood risk add (REVERSE: last to first from only_ids.txt). Expect slow but safe progress.")
         return
     if lower.startswith("/status"):
         mult = s.get("flood_multiplier", 1.0)

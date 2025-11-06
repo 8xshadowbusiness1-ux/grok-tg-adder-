@@ -26,7 +26,7 @@ USER_CHAT_ID = 1602198875
 TARGET_GROUP = -1001823169797
 IDS_FILE = "only_ids.txt" # Put usernames (with @) or numeric IDs here, one per line
 STATE_FILE = "add_state.json"
-PING_URL = "https://adder-tg.onrender.com"
+PING_URL = "https://grok-tg-adder.onrender.com"
 app = Flask(__name__)
 def log_print(msg):
     print(f"[LIVE] {msg}")
